@@ -1,0 +1,7 @@
+#!/bin/bash
+cd /home/bfinan
+wget -O atrb.mjpg http://129.186.120.2/mjpg/video.mjpg & sleep 2 ; pkill wget
+ffmpeg -y -i atrb.mjpg outputx.mp4
+ffmpeg -y -i outputx.mp4 -r 1 -s 1920x1080 -f image2 atrb-%03d.jpeg
+gsettings set org.gnome.desktop.background picture-uri file:///home/you/atrb-001.jpeg
+echo $(date) >> lsnote
